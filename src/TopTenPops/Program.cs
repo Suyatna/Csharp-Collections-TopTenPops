@@ -19,6 +19,8 @@ namespace TopTenPops
                 Console.WriteLine(
                     $"{PopulationFormatting.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
             }
+
+            Console.WriteLine($"{countries.Count} countries");
         }
     }
 }
