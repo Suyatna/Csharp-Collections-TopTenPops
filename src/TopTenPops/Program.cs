@@ -13,6 +13,10 @@ namespace TopTenPops
             CsvReader reader = new CsvReader(filePath);
 
             List<Country> countries = reader.ReadAllCountries();
+            Country liliput = new Country("liliput", "LIL", "Somewhere", 2_000_000);
+
+            int liliputIndex;
+            countries.Insert(1, liliput);
 
             foreach (Country country in countries)
             {
