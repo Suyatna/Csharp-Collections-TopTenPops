@@ -13,9 +13,9 @@ namespace TopTenPops
 			this.csvReader = csvReader;
 		}
 
-		public List<Country> ReadAllCountries()
+		public Dictionary<string, Country> ReadAllCountries()
 		{
-			List<Country> countries = new List<Country>();
+			var countries = new Dictionary<string, Country>();
 
 			using (StreamReader stream = new StreamReader(csvReader))
 			{
@@ -24,7 +24,8 @@ namespace TopTenPops
 				string csvLine;
 				while ((csvLine = stream.ReadLine()) != null)
 				{
-					countries.Add(ReadCountryFromCsvLine(csvLine));
+					Country country = ReadCountryFromCsvLine(csvLine);
+					countries.Add(country.Code, country);
 				}
 			}
 

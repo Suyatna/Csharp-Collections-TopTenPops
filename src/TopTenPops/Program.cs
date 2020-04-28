@@ -11,21 +11,20 @@ namespace TopTenPops
                 @"G:\Pluralsight\C# Development Fundamentals\1. Beginner\2. Beginning C# Collections\csharp-collections-beginning\Pop by Largest Final.csv";
 
             CsvReader reader = new CsvReader(filePath);
+            Dictionary<string, Country> countries = reader.ReadAllCountries();
 
-            List<Country> countries = reader.ReadAllCountries();
-            Country lilliput = new Country("Lilliput", "LIL", "Somewhere", 2_000_000);
+            Console.WriteLine("Which country code do you want to look up? ");
+            string userInput = Console.ReadLine();
 
-            int lilliputIndex = countries.FindIndex(x => x.Population < 2_000_000);
-            countries.Insert(lilliputIndex, lilliput);
-            countries.RemoveAt(lilliputIndex);
-
-            foreach (Country country in countries)
+            bool gotCountry = countries.TryGetValue(userInput, out Country country);
+            if (gotCountry)
             {
-                Console.WriteLine(
-                    $"{PopulationFormatting.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+                Console.WriteLine($"{country.Name} has population {PopulationFormatter.FormatPopulation(country.Population)}");
             }
-
-            Console.WriteLine($"{countries.Count} countries");
+            else
+            {
+                Console.WriteLine($"Sorry, there is no country with code '{userInput}'");
+            }
         }
     }
 }

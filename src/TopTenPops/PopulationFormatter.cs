@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TopTenPops
 {
-    class PopulationFormatting
+    class PopulationFormatter
     {
         public static string FormatPopulation(int population)
         {
