@@ -29,7 +29,7 @@ namespace TopTenPops
 				}
 			}
 
-				return countries;
+			return countries;
 		}
 
 		public Country ReadCountryFromCsvLine(string csvLine)

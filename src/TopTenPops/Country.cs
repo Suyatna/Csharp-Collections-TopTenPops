@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TopTenPops
+﻿namespace TopTenPops
 {
     public class Country
     {
