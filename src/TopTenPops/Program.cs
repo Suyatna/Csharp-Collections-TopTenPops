@@ -10,20 +10,13 @@ namespace TopTenPops
             string filePath = @"E:\Projects_C#\Csharp-Collections-TopTenPops\Csharp-Collections-TopTenPops\Pop by Largest Final.csv";
 
             CsvReader reader = new CsvReader(filePath);
-            Dictionary<string, Country> countries = reader.ReadAllCountries();
+            List<Country> countries = reader.ReadAllCountries();
 
-            Console.WriteLine("Which country code do you want to look up? ");
-            string userInput = Console.ReadLine();
-
-            bool gotCountry = countries.TryGetValue(userInput, out Country country);
-            if (gotCountry)
+            for (int i = 0; i < countries.Count; i++)
             {
-                Console.WriteLine($"{country.Name} has population {PopulationFormatter.FormatPopulation(country.Population)}");
-            }
-            else
-            {
-                Console.WriteLine($"Sorry, there is no country with code '{userInput}'");
-            }
+                Country country = countries[i];
+                Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+            }            
         }
     }
 }
