@@ -10,7 +10,9 @@ namespace TopTenPops
             string filePath = @"E:\Projects_C#\Csharp-Collections-TopTenPops\Csharp-Collections-TopTenPops\Pop by Largest Final.csv";
 
             CsvReader reader = new CsvReader(filePath);
+
             List<Country> countries = reader.ReadAllCountries();
+            reader.RemoveCommaCountries(countries);
 
             Console.WriteLine("Enter no. of countries in a +ve integer. Existing");
 
@@ -31,7 +33,7 @@ namespace TopTenPops
                 }
 
                 Country country = countries[i];
-                Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+                Console.WriteLine($"{i+1} : {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
             }
         }
     }

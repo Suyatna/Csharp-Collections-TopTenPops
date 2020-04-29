@@ -32,6 +32,14 @@ namespace TopTenPops
 			return countries;
 		}
 
+		public void RemoveCommaCountries(List<Country> countries)
+		{
+			for (int i = 0; i < countries.Count; i++)
+			{
+				if (countries[i].Name.Contains(',')) countries.RemoveAt(i);
+			}
+		}
+
 		public Country ReadCountryFromCsvLine(string csvLine)
 		{
 			string[] parts = csvLine.Split(new char[] { ',' });
