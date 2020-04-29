@@ -21,9 +21,15 @@ namespace TopTenPops
                 return;
             }
 
-            int maxToDisplay = Math.Min(userInput, countries.Count);
-            for (int i = 0; i < maxToDisplay; i++)
+            int maxToDisplay = userInput;
+            for (int i = 0; i < countries.Count; i++)
             {
+                if (i > 0 && (i % maxToDisplay == 0))
+                {
+                    Console.WriteLine("Hit return to continue, anything else to quit>");
+                    if (Console.ReadLine() != "") break;        
+                }
+
                 Country country = countries[i];
                 Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
             }
