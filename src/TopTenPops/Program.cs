@@ -12,11 +12,21 @@ namespace TopTenPops
             CsvReader reader = new CsvReader(filePath);
             List<Country> countries = reader.ReadAllCountries();
 
-            for (int i = 0; i < countries.Count; i++)
+            Console.WriteLine("Enter no. of countries in a +ve integer. Existing");
+
+            bool inputIsInt = int.TryParse(Console.ReadLine(), out int userInput);
+            if (!inputIsInt || userInput <= 0)
+            {
+                Console.WriteLine("You must type in a +ve integer. Existing");
+                return;
+            }
+
+            int maxToDisplay = Math.Min(userInput, countries.Count);
+            for (int i = 0; i < maxToDisplay; i++)
             {
                 Country country = countries[i];
                 Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
-            }            
+            }
         }
     }
 }
