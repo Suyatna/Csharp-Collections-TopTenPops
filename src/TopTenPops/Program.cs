@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TopTenPops
 {
@@ -12,6 +13,17 @@ namespace TopTenPops
             CsvReader reader = new CsvReader(filePath);
 
             List<Country> countries = reader.ReadAllCountries();
+
+            // RemoveComma(reader, countries);
+
+            foreach (Country country in countries.OrderBy(x => x.Name))
+            {
+                Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+            }
+        }
+
+        public static void RemoveComma(CsvReader reader, List<Country> countries)
+        {
             reader.RemoveCommaCountries(countries);
 
             Console.WriteLine("Enter no. of countries in a +ve integer. Existing");
@@ -29,11 +41,11 @@ namespace TopTenPops
                 if (i > 0 && (i % maxToDisplay == 0))
                 {
                     Console.WriteLine("Hit return to continue, anything else to quit>");
-                    if (Console.ReadLine() != "") break;        
+                    if (Console.ReadLine() != "") break;
                 }
 
                 Country country = countries[i];
-                Console.WriteLine($"{i+1} : {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+                Console.WriteLine($"{i + 1} : {PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
             }
         }
     }
