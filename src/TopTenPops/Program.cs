@@ -16,9 +16,15 @@ namespace TopTenPops
 
             // RemoveComma(reader, countries);
 
-            foreach (Country country in countries.Take(20).Where(x => !x.Name.Contains(',')))
+            var filteredCountries = countries.Where(x => !x.Name.Contains(',')).Take(20);
+            foreach (Country country in filteredCountries)
             {
                 Console.WriteLine($"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+            }
+
+            for (int i = 12; i <= 14; i++)
+            {
+                Console.WriteLine(countries[i].Name);
             }
         }
 
