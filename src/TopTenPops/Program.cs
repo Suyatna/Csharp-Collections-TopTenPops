@@ -19,7 +19,22 @@ namespace TopTenPops
                 Console.WriteLine(region);
             }
 
+            Console.WriteLine("\nWhich of the above regions do you want? ");
+            Console.Write(">> ");
+            string choosenRegion = Console.ReadLine();
 
+            if (countries.ContainsKey(choosenRegion))
+            {
+                foreach (Country country in countries[choosenRegion].Take(10))
+                {
+                    Console.WriteLine(
+                        $"{PopulationFormatter.FormatPopulation(country.Population).PadLeft(15)} : {country.Name}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid region!");
+            }
 
             // RemoveComma(reader, countries); 
             // FilterCountries();
