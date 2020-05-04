@@ -27,12 +27,12 @@ namespace TopTenPops
 					Country country = ReadCountryFromCsvLine(csvLine);
 					if (countries.ContainsKey(country.Region))
 					{
-						countries[country.Region].Add(country);
+						countries[country.Region].Add(country); // "Asia", "South America", etc.
 					}
 					else
 					{
 						List<Country> countriesInRegion = new List<Country>() { country };
-						countries.Add(country.Region, countriesInRegion);
+						countries.Add(country.Region, countriesInRegion); // "Asia", ["China", "India", etc]
 					}
 				}
 			}
